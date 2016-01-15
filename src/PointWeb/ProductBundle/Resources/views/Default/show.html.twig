@@ -1,0 +1,38 @@
+{% extends 'PointWebAppBundle::base.html.twig' %}
+{% block content %}
+
+    <h1>Product</h1>
+
+    <table class="record_properties">
+        <tbody>
+        <tr>
+            <th>Id</th>
+           <td>{{ detail.id }}</td>
+        </tr>
+        <tr>
+            <th>Title</th>
+            <td>{{ detail.title }}</td>
+        </tr>
+        <tr>
+            <th>Description Produit :</th>
+            <td>{{ detail.description }}</td>
+        </tr>
+        <tr>
+            <th>ID Category</th>
+            <td>{{ detail.category.id}}</td>
+        </tr>
+        <tr>
+            <th>Titre Category</th>
+            <td>{{ detail.category.title }}</td>
+        </tr>
+        </tbody>
+    </table>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/{{detail.urlLink}}" frameborder="0" allowfullscreen></iframe>
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('product') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}

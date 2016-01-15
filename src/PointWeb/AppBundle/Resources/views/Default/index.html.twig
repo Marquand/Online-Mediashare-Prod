@@ -1,0 +1,230 @@
+{% extends 'PointWebAppBundle::base.html.twig' %} {% block content %}
+
+
+
+
+<!-- BEGIN RECOMMEND -->
+<section id="recommend" style="background:url({{asset('img/sectionOffer/bg.jpg')}}) fixed no-repeat; background-size:cover;">
+	<div class="container">
+		<div class="header text-center">
+			<h3>Vidéo <span>recommandé</span></h3>
+			<p></p>
+		</div>
+		<div class="row m-t-50 gallery">
+			
+			<!-- begin position -->
+			{% for item in recommend|slice(0,4) %}
+			<div class="col-md-3 col-sm-6 text-center">
+				<div class="img">
+					
+					{% if item.pictures|length > 0 %}	
+					<img src="{{ asset(item.pictures.0.getWebPath()|imagine_filter('my_thumb_1_1')) }}" alt="{{ item.title }}" class="img-responsive" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'>
+					{% else %}
+					<img src="http://img.youtube.com/vi/{{item.urlLink}}/default.jpg" alt="{{ item.title }}" class="img-responsive" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'>
+					{% endif %}
+					
+				</div>
+				<h4>{{item.title}}</h4>
+				<p>{{item.reference|raw}}</p>
+			</div>
+			{% endfor %}
+			<!-- ./end position -->
+
+
+		</div>
+	</div>
+</section>
+<!-- END RECOMMEND -->
+
+
+<!-- BEGIN PORTFOLIO -->
+<section id="portfolio">
+	<div class="container">
+
+
+		<div class="header">
+			<h3>La<br>Mediathèque</h3>
+
+			<div class="row">
+				<div class="col-md-6">
+					<p>Centralisation de toutes les vidéos qui ont pû être publié sur le site. </p>
+				</div>
+				<div class="col-md-6 text-right portfolio-list-action">
+					<a href="#" class="fa fa-2x fa-th-large" id="projectListLarge"></a>
+					<a href="#" class="fa fa-2x fa-th" id="projectListStandard"></a>
+				</div>
+			</div>
+		</div>
+
+		<div id="portfolioProject">
+
+			<div class="apple"></div>
+
+		<div class="gallery">
+				<ul class="list-unstyled row m-b-20">
+					{% for item in central|slice(0,1) %}
+					<li class="col-md-2 col-sm-3 col-xs-4">
+						{% if item.pictures|length >0 %} 
+						{% for picture in item.pictures %}
+						<img src="{{ asset(picture.getWebPath()|imagine_filter('my_thumb_1_1')) }}" alt="{{ item.title }}" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'> {% endfor %} 
+											{% else %}
+					<img src="http://img.youtube.com/vi/{{item.urlLink}}/default.jpg" alt="{{ item.title }}" class="img-responsive" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'>
+					{% endif %}
+
+						<!--<center><span>{{ item.title }}</span></center>-->
+
+					{% endfor %}
+					</li>
+
+					<li class="col-md-4 col-sm-6 col-xs-8">
+						<div class="padding-20">
+							<h4 class="title">L'article libre<span> du jour</span></h4>
+							<p>
+								Bientôt un article tout les jours, un article libre, traîtant de tout sujet divers et variés.
+							</p>
+							<a href="#" class="more">Lire</a>
+						</div>
+					</li>
+
+
+					{% for item in central|slice(1,16) %}
+					<li class="col-md-2 col-sm-3 col-xs-4">
+						{% if item.pictures|length >0 %} {% for picture in item.pictures %}
+						<img src="{{ asset(picture.getWebPath()|imagine_filter('my_thumb_1_1')) }}" alt="{{ item.title }}" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'> {% endfor %} 
+											{% else %}
+					<img src="http://img.youtube.com/vi/{{item.urlLink}}/default.jpg" alt="{{ item.title }}" class="img-responsive" data-image='https://www.youtube.com/embed/{{item.urlLink}}?list=FLGprWHneILWT2LiW6JKWiAQ'>
+					{% endif %}
+						
+						<!--<center><span>{{ item.title }}</span></center>-->
+					</li>
+					{% endfor %}
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+<script>
+	// Create a lightbox
+
+var $lightbox = $("<div class='lightbox'></div>");
+var $img = $('<iframe width="560" height="315"  frameborder="0" allowfullscreen>');
+var $caption = $("<p class='caption'></p>");
+
+
+// Add image and caption to lightbox
+
+$lightbox
+	.append($img)
+	.append($caption);
+
+// Add lighbox to document
+
+$('body').append($lightbox);
+
+
+$('.gallery li').click(function (e) {
+	e.preventDefault();
+
+	// Get image link and description
+	var src = $(this).children('img').attr("data-image");
+	var cap = $(this).children('img').attr("alt");
+
+	// Add data to lighbox
+
+	$img.attr('src',src);
+	$caption.text(cap);
+
+	// $lightbox.append('<img src="' + src + '"></img><p class="caption">' + caption + '</p>');
+
+	// Show lightbox
+
+	$lightbox.show();
+
+	$lightbox.click(function () {
+		$lightbox.hide();
+	});
+});
+
+</script>
+<!-- END PORTFOLIO -->
+
+
+<!-- BEGIN TEAM -->
+<!-- <section id="team">
+	<div class="lady"></div>
+	<div class="confetti"></div>
+	<div class="confettiOne"></div>
+	
+	<div class="container">
+
+		<div class="about">
+			<div class="row">
+				<div class="col-md-4">
+					<h3>ABOUT OUR TEAM</h3>
+				</div>
+				<div class="col-md-8">
+					<p><strong>Sed ut perspiciatis unde omnis iste natus</strong> error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+					<p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur?</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="persons">
+		
+			<div class="bx-persons">
+			  <div class="person">
+			  	<div class="img">
+			  		<img src="http://placehold.it/199x203" alt="">
+					<span></span>
+			  	</div>
+			  	<div class="info">
+					<h4>Thibault Marquand</h4>
+					<span>Web Developper</span>
+					<div class="social">
+						<a href="#"><i class="fa fa-facebook"></i></a>
+						<a href="#"><i class="fa fa-twitter"></i></a>
+						<a href="#"><i class="fa fa-google-plus"></i></a>
+					</div>
+				</div>
+			  </div>
+			</div>
+		
+		</div>
+	</div>
+	
+</section> -->
+<!-- END TEAM 
+
+
+<svg class="svg">
+	<clippath id="cp-circle">
+		<circle r="180" cx="50%" cy="42%"></circle>
+		<text text-anchor="middle" x="50%" y="98%">Izap4U</text>
+	</clippath>
+
+	<g clip-path="url(#cp-circle)">
+		<foreignObject width="853" x="0" y="0" height="480">
+
+			<body xmlns="http://www.w3.org/1999/xhtml">
+				<iframe width="853" height="480" src="//www.youtube.com/embed/RKrNdxiBW3Y" frameborder="0" allowfullscreen></iframe>
+			</body>
+		</foreignObject>
+	</g>
+</svg>
+ BEGIN FOOTER -->
+<footer id="sectionFooter">
+
+
+
+
+</footer>
+{% endblock %}

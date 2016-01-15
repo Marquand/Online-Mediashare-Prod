@@ -1,0 +1,77 @@
+{% extends 'PointWebAppBundle::base.html.twig' %}
+{% block content %}
+
+<div class="container" style="margin-top:5%;">
+
+<div class="row" id="contact">
+                <div class="col-md-8 col-sm-7 space-mobile">
+                    {{ form_start(form) }}
+                        <div class="row">
+                            <div class="col-md-6">
+                            <!-- form block -->
+                                            <div class="input-group m-b-20">
+                                               <span class="input-group-addon"><i class="fa fa-users"></i></span>
+                                                    {{ form_errors(form.lastname) }}
+                                                    {{ form_widget(form.lastname) }}
+                                                </div>
+
+                                            <div class="input-group m-b-20">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                    {{ form_errors(form.phone) }}
+                                                    {{ form_widget(form.phone) }}
+                                              </div>
+                                </div>
+
+                                           
+                                <div class="col-md-6">
+                                    <!-- form block -->
+                                    <div class="input-group m-b-20">
+                                        <span class="input-group-addon"><i class="fa fa-location-arrow"></i></span>
+                                              
+                                                    {{ form_errors(form.address) }}
+                                                    {{ form_widget(form.address) }}
+             
+                                             </div>
+                                    <div class="input-group m-b-20">
+                                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                    {{ form_errors(form.email) }}
+                                                    {{ form_widget(form.email) }}
+                                            </div>
+                                            
+                                                    {{ form_errors(form.message) }}
+                                                    {{ form_widget(form.message) }}
+                                    </div>
+                                        <div class="col-md-12">      
+                                            <fieldset id="captcha">
+                                               <legend align="center">Veuillez répondre à la question pour envoyer votre message.</legend>
+                                               {% if captcha != "" %}
+                                                <p class="error"> mauvaise r&eacute;ponse </p>{% endif %}
+                                                <center><div id="captcha_content">
+                                                    <p class="captcha_question">{{ question }} <span>*</span></p>
+                                                    <input class="reponse_captcha" type="text" name="captcha" placeholder="Entrez la réponse" value="{{ captcha }}" />
+                                                </div>
+                                                </center>
+                                            </fieldset>
+                                            </div>
+                    </div>
+               
+                 {{ form_end(form) }}
+                </div>
+
+                <div class="col-md-4 col-sm-5 contactData">
+                    <h3 class="titleTag m-t-0">Contact<br>Details</h3>
+                    <p class="m-b-40">Vous avez des questions ? Contacté nous directement par internet ou voie postal.</p>
+                    <p class="contactlocation">France, Lyon 69004</p>
+                    <p class="contactphone">06 74 32 85 57</p>
+                    <p class="contactmail">Marquand.Thibault@gmail.com</p>
+                    <hr>
+                </div>
+        </div>
+
+    </div>
+
+
+
+ 
+
+{% endblock %}
