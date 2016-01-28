@@ -13,11 +13,6 @@ use Doctrine\ORM\EntityRepository;
 class ProductRepository extends EntityRepository
 {
   
-      public function findAll()
-    {
-        return $this->findBy(array(), array('createDate' => 'DESC'));
-    }
-  
       public function findRecommended()
     {
         $q = $this->createQueryBuilder('n');
@@ -27,11 +22,11 @@ class ProductRepository extends EntityRepository
         return $res->getResult();
     }
   
-      public function findFirst()
+      public function findAll()
     {
         $q = $this->createQueryBuilder('n');
         $q->addOrderBy('n.createDate', 'DESC')
-            ->setMaxResults(1);
+            ->setMaxResults(20);
         $res = $q->getQuery();
         return $res->getResult();
     }

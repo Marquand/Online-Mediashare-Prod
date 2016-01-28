@@ -1,28 +1,30 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" hreflang="fr">
+  
     <head>
         <meta charset="UTF-8"/>
-        <title>{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('title') }}</title>
+        <title>Mediashare - Actualité en vidéo</title>
         <meta name="description" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('description') }}"/>
         <meta name="keywords" content="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params'))|getRef('keywords') }}"/>
         <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
-
+<meta name="google-site-verification" content="eCQHNCXu6yslpuStRG1Ktzd6WoW2hWv35P3GoUTj3gQ" />
+      
     <!-- http://www.kylejlarson.com/blog/2012/iphone-5-web-design/ -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
     <meta content="width=device-width, initial-scale=1" name="viewport">
     <!--<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>-->
         <script src="{{ asset('jquery-ui-1.11.4.custom/external/jquery/jquery.js') }}"></script>
-        <script src="{{ asset('js/jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script>
+<!--        <script src="{{ asset('js/jquery-ui-1.11.4.custom/jquery-ui.min.js') }}"></script> -->
         <script src="{{ asset('js/jquery.anti-ie7.js') }}"></script>
         <script src="{{ asset('js/jquery-migrate-1.2.1.js') }}"></script>
-        <script src="{{ asset('js/jserror.js') }}"></script>
+<!--        <script src="{{ asset('js/jserror.js') }}"></script> -->
         <script src="{{ asset('js/antispam.js') }}"></script>
 
 
 
-    <link href="{{ asset('Magnific-Popup-master/dist/magnific-popup.css') }}" rel="stylesheet">
-    <script src="{{ asset('Magnific-Popup-master/dist/jquery.magnific-popup.min.js') }}"></script>
+        <link href="{{ asset('Magnific-Popup-master/dist/magnific-popup.css') }}" rel="stylesheet">
+        <script src="{{ asset('Magnific-Popup-master/dist/jquery.magnific-popup.min.js') }}"></script>
 
 
 

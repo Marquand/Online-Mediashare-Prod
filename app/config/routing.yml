@@ -18,18 +18,6 @@ point_web_product:
     resource: "@PointWebProductBundle/Resources/config/routing.yml"
     prefix:   /
 
-point_web_ged:
-    resource: "@PointWebGedBundle/Resources/config/routing.yml"
-    prefix:   /
-
-point_web_faq:
-    resource: "@PointWebFaqBundle/Resources/config/routing.yml"
-    prefix:   /
-
-point_web_gallery:
-    resource: "@PointWebGalleryBundle/Resources/config/routing.yml"
-    prefix:   /
-
 point_web_guest_book:
     resource: "@PointWebGuestBookBundle/Resources/config/routing.yml"
     prefix:   /

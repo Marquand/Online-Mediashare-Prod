@@ -1,38 +1,47 @@
-{% extends 'PointWebAppBundle::base.html.twig' %}
-{% block content %}
+{% extends 'PointWebAppBundle::base.html.twig' %} {% block content %}
 
-    <h1>Product</h1>
+<div id="spot" class="videodetail">
+  <!-- overlay -->
+  <div class="overlayz"></div>
+  <!-- lightbulb -->
+  <div class="togglelight" title="click to toggle the lights mode">
+    <i class="fa fa-lightbulb-o"></i>
+  </div>
 
-    <table class="record_properties">
-        <tbody>
-        <tr>
-            <th>Id</th>
-           <td>{{ detail.id }}</td>
-        </tr>
-        <tr>
-            <th>Title</th>
-            <td>{{ detail.title }}</td>
-        </tr>
-        <tr>
-            <th>Description Produit :</th>
-            <td>{{ detail.description }}</td>
-        </tr>
-        <tr>
-            <th>ID Category</th>
-            <td>{{ detail.category.id}}</td>
-        </tr>
-        <tr>
-            <th>Titre Category</th>
-            <td>{{ detail.category.title }}</td>
-        </tr>
-        </tbody>
-    </table>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/{{detail.urlLink}}" frameborder="0" allowfullscreen></iframe>
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('product') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
+  <!-- video -->
+{% if detail.urlLink|length > 0  %}
+  <iframe style="margin-top:3%" src="https://www.youtube.com/embed/{{detail.urlLink}}?list=UUaQm6lX79kQ25DJGAn0cFwg" frameborder="0" allowfullscreen></iframe>
+{% elseif detail.urlLink2|length > 0 %}
+    <iframe style="margin-top:3%" src="http://www.dailymotion.com/embed/video/{{detail.urlLink2}}" frameborder="0" allowfullscreen></iframe>
+{% elseif detail.urlLink3|length > 0 %}
+    <iframe style="margin-top:3%" src="https://player.vimeo.com/video/{{detail.urlLink3}}" frameborder="0" allowfullscreen></iframe>
+{% elseif detail.urlLink4|length > 0 %}
+    <iframe style="margin-top:3%" src="https://www.youtube.com/embed/{{detail.urlLink4}}" frameborder="0" allowfullscreen></iframe>
+{% endif %}
+  <center>
+    <div style="max-width:75%;min-width:50%;margin-top:5%;" class="info">
+      <h1 style="margin-top:0px;">{{detail.title}}</h1> {{detail.description|raw}}
+
+      <hr class="clear">
+    </div>
+  </center>
+
+</div>
+<script>
+  /* show/hide overlay & toggle style of button */
+  $('.togglelight').click(function() {
+    $(this).toggleClass('lightsoff');
+    $('.overlayz').fadeToggle(400);
+  });
+
+  /* set video volume to 25% */
+  $('video')[0].volume = 0.15;
+
+  /* 
+   * tested with:
+   * chrome 31 and Firefox 23 @ Win 7
+   *
+   */
+</script>
+
 {% endblock %}

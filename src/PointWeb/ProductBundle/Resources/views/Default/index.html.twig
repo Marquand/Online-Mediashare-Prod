@@ -1,9 +1,143 @@
 {% extends 'PointWebAppBundle::base.html.twig' %}
 {% block content %}
-Listing des Produits :</br>
-<ul>
-    {% for item in product %}
-        <li>{{ item.id }} - {{ item.title }} | Id-Category : {{ item.category.id }} - Titre Category : {{ item.category.title }}  <a href="{{ path('product_show',  { 'id': item.id }) }}">Voir</a> </li>
-    {% endfor %}
-</ul>
+
+<!-- BEGIN PORTFOLIO -->
+<section id="portfolio">
+	<div class="container">
+
+
+		<div class="header">
+			<h3>La<br>Mediathèque</h3>
+
+			<div class="row">
+				<div class="col-md-6">
+					<p>Centralisation de toutes les vidéos qui ont pû être publié sur le site. </p>
+				</div>
+				<div class="col-md-6 text-right portfolio-list-action">
+					<a href="#" class="fa fa-2x fa-th-large" id="projectListLarge"></a>
+					<a href="#" class="fa fa-2x fa-th" id="projectListStandard"></a>
+				</div>
+			</div>
+		</div>
+
+		<div id="portfolioProject">
+
+			<div class="apple"></div>
+
+			<div class="gallery">
+				<ul class="list-unstyled row m-b-20">
+					{% for item in central|slice(0,1) %}
+					<li class="col-md-2 col-sm-3 col-xs-4 video">
+						{% if item.pictures|length >0 %}
+						<img src="{{ asset(item.pictures.0.getWebPath()|imagine_filter('my_thumb_1_3')) }}" alt="{{ item.title }}" id-video="{{path('product_show', {'id': item.id })}}#spot" data-image='{% if item.urlLink|length >0 %}https://www.youtube.com/embed/{{item.urlLink}}?list=UUaQm6lX79kQ25DJGAn0cFwg{% endif %}'
+						dailymotion="{% if item.urlLink2|length >0 %}http://www.dailymotion.com/embed/video/{{item.urlLink2}}{% endif %}" vimeo="{% if item.urlLink3|length >0 %}https://player.vimeo.com/video/{{item.urlLink3}}{% endif %}" autre="{% if item.urlLink4|length >0 %}https://www.youtube.com/embed/{{item.urlLink4}}{% endif %}">						
+						{% else %}
+						<img src="http://img.youtube.com/vi/{{item.urlLink}}/hqdefault.jpg" alt="{{ item.title }}" id-video="{{path('product_show', {'id': item.id })}}#spot" class="img-responsive" data-image='{% if item.urlLink|length >0 %}https://www.youtube.com/embed/{{item.urlLink}}?list=UUaQm6lX79kQ25DJGAn0cFwg{% endif %}'
+						dailymotion="{% if item.urlLink2|length >0 %}http://www.dailymotion.com/embed/video/{{item.urlLink2}}{% endif %}" vimeo="{% if item.urlLink3|length >0 %}https://player.vimeo.com/video/{{item.urlLink3}}{% endif %}" autre="{% if item.urlLink4|length >0 %}https://www.youtube.com/embed/{{item.urlLink4}}{% endif %}">						{% endif %}
+
+						<!--<center><span>{{ item.title }}</span></center>-->
+
+						{% endfor %}
+					</li>
+
+					<li class="col-md-4 col-sm-6 col-xs-8">
+						<div class="padding-20">
+							<h4 class="title">L'article libre<span> du jour</span></h4>
+							<p>
+								Bientôt un article tout les jours, un article libre, traîtant de tout sujet divers et variés.
+							</p>
+							<a href="{{path('news_show', {'id': article.0.id })}}#spot" class="more">Lire</a>
+						</div>
+					</li>
+
+
+					{% for item in central|slice(1,16) %}
+					<li class="col-md-2 col-sm-3 col-xs-4 video">
+						{% if item.pictures|length >0 %}
+						<img src="{{ asset(item.pictures.0.getWebPath()|imagine_filter('my_thumb_1_3')) }}" alt="{{ item.title }}" id-video="{{path('product_show', {'id': item.id })}}#spot" data-image='{% if item.urlLink|length >0 %}https://www.youtube.com/embed/{{item.urlLink}}?list=UUaQm6lX79kQ25DJGAn0cFwg{% endif %}'
+						dailymotion="{% if item.urlLink2|length >0 %}http://www.dailymotion.com/embed/video/{{item.urlLink2}}{% endif %}" vimeo="{% if item.urlLink3|length >0 %}https://player.vimeo.com/video/{{item.urlLink3}}{% endif %}" autre="{% if item.urlLink4|length >0 %}https://www.youtube.com/embed/{{item.urlLink4}}{% endif %}">						
+						{% else %}
+						<img src="http://img.youtube.com/vi/{{item.urlLink}}/hqdefault.jpg" alt="{{ item.title }}" id-video="{{path('product_show', {'id': item.id })}}#spot" class="img-responsive" data-image='{% if item.urlLink|length >0 %}https://www.youtube.com/embed/{{item.urlLink}}?list=UUaQm6lX79kQ25DJGAn0cFwg{% endif %}'
+						dailymotion="{% if item.urlLink2|length >0 %}//www.dailymotion.com/embed/video/{{item.urlLink}}{% endif %}" vimeo="{% if item.urlLink3|length >0 %}https://player.vimeo.com/video/{{item.urlLink3}}{% endif %}" autre="{% if item.urlLink4|length >0 %}https://www.youtube.com/embed/{{item.urlLink4}}{% endif %}">						{% endif %}
+
+						<!--<center><span>{{ item.title }}</span></center>-->
+					</li>
+					{% endfor %}
+
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</section>
+<footer id="sectionFooter">
+	<script>
+	// Create a lightbox
+
+var $lightbox = $("<div class='lightbox'></div>");
+var $img = $('<iframe width="560" height="315"  frameborder="0" allowfullscreen>');
+var $caption = $("<h2 class='caption'></h2>");
+var $center = $("<center></center>")
+var $btn = $("<a class='btn btn-primary' align='center' role='button' href='' >Détail</a>");
+
+
+// Add image and caption to lightbox
+
+$lightbox
+	.append($img)
+	.append($caption)
+	.append($center);
+$center
+	.append($btn);
+
+
+// Add lighbox to document
+
+$('body').append($lightbox);
+
+
+$('.gallery li').click(function(e) {
+	e.preventDefault();
+
+	// Get image link and description
+	var src = $(this).children('img').attr("data-image");
+	var cap = $(this).children('img').attr("alt");
+	var idvideo = $(this).children('img').attr("id-video");
+	var youtube = $(this).children('img').attr("youtube");
+	var dailymotion = $(this).children('img').attr("dailymotion");
+	var vimeo = $(this).children('img').attr("vimeo");
+	var autre = $(this).children('img').attr("autre");
+
+	// Add data to lighbox
+	if (src != 0) {
+		$img.attr('src', src);
+	} else if (dailymotion != 0) {
+		$img.attr('src', dailymotion);
+	} else if (vimeo != 0) {
+		$img.attr('src', vimeo);
+	} else if (autre != 0) {
+		$img.attr('src', autre);
+	}
+
+	$caption.text(cap);
+	$btn.attr('href', idvideo);
+
+	// $lightbox.append('<img src="' + src + '"></img><p class="caption">' + caption + '</p>');
+
+	// Show lightbox
+
+	$lightbox.show();
+
+	$(document).on('keydown', function(e) {
+		if (e.keyCode === 27) { // ESC
+			$($lightbox).hide();
+		}
+	});
+
+	$lightbox.click(function() {
+		$lightbox.hide();
+	});
+});
+</script>
+
 {% endblock %}

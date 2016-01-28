@@ -19,10 +19,10 @@ class DefaultController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        
         $recommanded = $em->getRepository('PointWebProductBundle:Product')->findRecommended(array('online'=>true, 'recommended'=>true));
         $central = $em->getRepository('PointWebProductBundle:Product')->findAll();
-        $article = $em->getRepository('PointWebNewsBundle:News')->findBy(array('online'=>true));
+        $article = $em->getRepository('PointWebNewsBundle:News')->findLastNews(array('online'=>true));
 
         return $this->render('PointWebAppBundle:Default:index.html.twig', array('recommend' => $recommanded, 'central' => $central, 'article'=>$article ));
     }
@@ -86,7 +86,7 @@ class DefaultController extends Controller
                     )));
                 $this->get('mailer')->send($message);
 
-                return $this->redirect($this->generateUrl('point_web_app_thanks'));
+                return $this->redirect($this->generateUrl('point_web_app_homepage'));
             }
         }
 
@@ -196,11 +196,11 @@ class DefaultController extends Controller
     private function getUrl(Url $url, $pattern, $key = 0)
     {
         //liste des bundles inutilisés
-        $bundleToAvoid = array('sitemap.xml', 'cookies', 'profile');
+        $bundleToAvoid = array('sitemap.xml', 'cookies', 'profile', 'hello','rc', 'resolve');
 
         //retourne un tableau avec toutes les url de tout les bundles
         $routes = $this->getAllRoutes();
-
+        
         //ce tableau contient la liste des url sans slug
         $tabUrl = array();
 
@@ -258,12 +258,17 @@ class DefaultController extends Controller
                     $slugA[] = $slug;
 
                 } elseif (strstr($ex, 'www') == false AND strstr($ex, '{') == false AND $ex != $action) {
-                    if ($action != '')                                   //format{ www.test.fr/Product/{slug}/{slug}/show} => path = Product_show
+                  if($ex == 'video'){
+                    $ex = 'product';
+                  }
+                    if ($action != '')         //format{ www.test.fr/Product/{slug}/{slug}/show} => path = Product_show
+
                         $entity = ucfirst($ex) . '_' . $action;
+                    
                     else                                                //format{ www.test.fr/Product/{slug}/{slug} => path = Product
                         $entity = ucfirst($ex);
                 }
-
+                      
 
             }
 
@@ -292,9 +297,16 @@ class DefaultController extends Controller
             $name = explode("_", $rt['entity']);
             $tmp = $name[0];
             $entityName = $bundleName = ucfirst($tmp);
+          
+          if($rt['entity']!='Rc'){
+            if($rt['entity']!='Resolve'){
 
             if ($bundleName == 'Category') {
                 $bundleName = 'Product';
+            }
+           if ($bundleName == 'Video') {
+                $bundleName = 'Product';
+                $entityName = 'Product';
             }
 
             //si le nom de bundle n'est pas dans le tableau des bundle a pas afficher alors on le traite !!
@@ -315,8 +327,9 @@ class DefaultController extends Controller
 
                 }
             }
-
+          }
         }
+      }
 
         return $urls;
     }

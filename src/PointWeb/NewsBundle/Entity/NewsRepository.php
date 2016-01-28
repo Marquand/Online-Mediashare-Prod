@@ -13,4 +13,12 @@ use PointWeb\AdminBundle\Entity\PagerRepository;
 
 class NewsRepository extends PagerRepository
 {
+        public function findLastNews()
+    {
+        $q = $this->createQueryBuilder('n');
+        $q->addOrderBy('n.createDate', 'DESC')
+            ->setMaxResults(1);
+        $res = $q->getQuery();
+        return $res->getResult();
+    }
 }

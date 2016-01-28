@@ -62,7 +62,37 @@ class Product
      * @ORM\Column(name="url_link", type="string", length=255,  nullable=true)
      */
     private $urlLink;
+  
+      /**
+     * @var string
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Ce champs ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     * @ORM\Column(name="url_link2", type="string", length=255,  nullable=true)
+     */
+    private $urlLink2;
+  
+      /**
+     * @var string
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Ce champs ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     * @ORM\Column(name="url_link3", type="string", length=255,  nullable=true)
+     */
+    private $urlLink3;
 
+      /**
+     * @var string
+     * @Assert\Length(
+     *      max = "255",
+     *      maxMessage = "Ce champs ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     * @ORM\Column(name="url_link4", type="string", length=255,  nullable=true)
+     */
+    private $urlLink4;
+  
     /**
      * @var string
      *
@@ -267,7 +297,76 @@ class Product
     {
         return $this->urlLink;
     }
+  
+    /**
+     * Set urlLink2
+     *
+     * @param string $urlLink2
+     * @return Product
+     */
+    public function setUrlLink2($urlLink2)
+    {
+        $this->urlLink2 = $urlLink2;
 
+        return $this;
+    }
+
+    /**
+     * Get urlLink2
+     *
+     * @return string
+     */
+    public function getUrlLink2()
+    {
+        return $this->urlLink2;
+    }
+  
+    /**
+     * Set urlLink3
+     *
+     * @param string $urlLink3
+     * @return Product
+     */
+    public function setUrlLink3($urlLink3)
+    {
+        $this->urlLink3 = $urlLink3;
+
+        return $this;
+    }
+
+    /**
+     * Get urlLink3
+     *
+     * @return string
+     */
+    public function getUrlLink3()
+    {
+        return $this->urlLink3;
+    }
+
+    /**
+     * Set urlLink4
+     *
+     * @param string $urlLink4
+     * @return Product
+     */
+    public function setUrlLink4($urlLink4)
+    {
+        $this->urlLink4 = $urlLink4;
+
+        return $this;
+    }
+
+    /**
+     * Get urlLink4
+     *
+     * @return string
+     */
+    public function getUrlLink4()
+    {
+        return $this->urlLink4;
+    }
+  
     /**
      * Set category
      *

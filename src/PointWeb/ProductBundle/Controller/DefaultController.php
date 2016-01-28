@@ -8,8 +8,12 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $em = $this->getDoctrine()->getManager();
+        $article = $em->getRepository('PointWebNewsBundle:News')->findLastNews(array('online'=>true));
+      
         $product = $this->getDoctrine()->getRepository('PointWebProductBundle:Product')->findAll();
-        return $this->render('PointWebProductBundle:Default:index.html.twig', array('product' => $product));
+      
+        return $this->render('PointWebProductBundle:Default:index.html.twig', array('central' => $product, 'article'=>$article));
     }
 
     public function showAction($id)

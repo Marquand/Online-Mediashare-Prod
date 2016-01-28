@@ -33,7 +33,25 @@ class ProductType extends AbstractType
                 'label_attr' => array('class' => 'col-lg-2 control-label'),
             ))
             ->add('urlLink', 'text', array(
-                "label" => "Lien vidéo :",
+                "label" => "Lien vidéo Youtube :",
+                'required' => false,
+                'attr' => array('class' => 'form-control'),
+                'label_attr' => array('class' => 'col-lg-2 control-label'),
+            ))
+            ->add('urlLink2', 'text', array(
+                "label" => "Lien vidéo Dailymotion :",
+                'required' => false,
+                'attr' => array('class' => 'form-control'),
+                'label_attr' => array('class' => 'col-lg-2 control-label'),
+            ))
+            ->add('urlLink3', 'text', array(
+                "label" => "Lien vidéo Vimeo :",
+                'required' => false,
+                'attr' => array('class' => 'form-control'),
+                'label_attr' => array('class' => 'col-lg-2 control-label'),
+            ))
+            ->add('urlLink4', 'text', array(
+                "label" => "Lien vidéo autre :",
                 'required' => false,
                 'attr' => array('class' => 'form-control'),
                 'label_attr' => array('class' => 'col-lg-2 control-label'),

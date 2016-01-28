@@ -8,4 +8,4 @@ point_web_product_product_admin:
 
 point_web_product_product:
     resource: "@PointWebProductBundle/Resources/config/routing/product.yml"
-    prefix:   /product
+    prefix:   /video

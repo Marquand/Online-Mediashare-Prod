@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use PointWeb\CalendarBundle\Entity\CalendarEvent;
-use PointWeb\GedBundle\Entity\Folder;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -53,12 +52,6 @@ class User extends BaseUser
     protected $color;
 
     /**
-     * @ORM\ManyToMany(targetEntity="PointWeb\GedBundle\Entity\Folder", mappedBy="users")
-     * @ORM\OrderBy({"createDate" = "DESC"})
-     **/
-    private $folders;
-
-    /**
      * @ORM\OneToMany(targetEntity="PointWeb\CalendarBundle\Entity\CalendarEvent", mappedBy="creator")
      **/
     private $events;
@@ -80,7 +73,6 @@ class User extends BaseUser
     public function __construct()
     {
         parent::__construct();
-        $this->folders = new ArrayCollection();
         $this->events = new ArrayCollection();
         $this->enabled = 0;
     }
@@ -123,28 +115,6 @@ class User extends BaseUser
         return $this->username . ' (' . $this->lastName . ' ' . $this->firstName . ')';
     }
 
-    /**
-     * Add Folder
-     *
-     * @param Folder $folder
-     * @return User
-     */
-    public function addFolder(Folder $folder)
-    {
-        $this->folders[] = $folder;
-
-        return $this;
-    }
-
-    public function removeFolder(Folder $folder)
-    {
-        $this->folders->removeElement($folder);
-    }
-
-    public function getFolders()
-    {
-        return $this->folders;
-    }
 
     /**
      * Add Event
